@@ -1,5 +1,5 @@
 const express = require('express');
-const axios = require('axios');  // Import axios once at the top
+const axios = require('axios');
 let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
@@ -88,7 +88,7 @@ public_users.post('/register', (req, res) => {
 
 const getBooks = async () => {
     try {
-        const response = await axios.get('http://localhost:3000');
+        const response = await axios.get('http://localhost:5000');
         console.log('List of books:', response.data);
     } catch (error) {
         console.error('Error fetching the list of books:', error);
@@ -97,7 +97,7 @@ const getBooks = async () => {
 
 const getBookByISBN = async (isbn) => {
     try {
-        const response = await axios.get(`http://localhost:3000/isbn/${isbn}`);
+        const response = await axios.get(`http://localhost:5000/isbn/${isbn}`);
         console.log('Book details:', response.data);
     } catch (error) {
         console.error(`Error fetching book with ISBN ${isbn}:`, error);
@@ -106,7 +106,7 @@ const getBookByISBN = async (isbn) => {
 
 const getBooksByAuthor = async (author) => {
     try {
-        const response = await axios.get(`http://localhost:3000/author/${author}`);
+        const response = await axios.get(`http://localhost:5000/author/${author}`);
         console.log('Books by author:', response.data);
     } catch (error) {
         console.error(`Error fetching books by author ${author}:`, error);
@@ -115,7 +115,7 @@ const getBooksByAuthor = async (author) => {
 
 const getBooksByTitle = async (title) => {
     try {
-        const response = await axios.get(`http://localhost:3000/title/${title}`);
+        const response = await axios.get(`http://localhost:5000/title/${title}`);
         console.log('Books by title:', response.data);
     } catch (error) {
         console.error(`Error fetching books with title ${title}:`, error);
