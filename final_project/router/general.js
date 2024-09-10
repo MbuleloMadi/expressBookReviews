@@ -17,6 +17,20 @@ public_users.get('/',function (req, res) {
   return res.status(300).json({message: "Yet to be implemented"});
 });
 
+const axios = require('axios');
+
+const getBooks = async () => {
+    try {
+        const response = await axios.get('http://localhost:3000');
+        console.log('List of books:', response.data);
+    } catch (error) {
+        console.error('Error fetching the list of books:', error);
+    }
+};
+
+getBooks();
+
+
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', function(req, res) {
     const isbn = req.params.isbn;
@@ -28,6 +42,21 @@ public_users.get('/isbn/:isbn', function(req, res) {
     }
     res.status(404).send({ message: "Book not found" });
   });
+
+  const axios = require('axios');
+
+const getBookByISBN = async (isbn) => {
+    try {
+        const response = await axios.get(`http://localhost:3000/isbn/${isbn}`);
+        console.log('Book details:', response.data);
+    } catch (error) {
+        console.error(`Error fetching book with ISBN ${isbn}:`, error);
+    }
+};
+
+// Replace '1234567890' with actual ISBN
+getBookByISBN('1234567890');
+
   
 // Get book details based on author
 public_users.get('/author/:author', function(req, res) {
@@ -45,6 +74,23 @@ public_users.get('/author/:author', function(req, res) {
     }
   });
 
+
+  const axios = require('axios');
+
+const getBooksByAuthor = async (author) => {
+    try {
+        const response = await axios.get(`http://localhost:3000/author/${author}`);
+        console.log('Books by author:', response.data);
+    } catch (error) {
+        console.error(`Error fetching books by author ${author}:`, error);
+    }
+};
+
+// Replace 'John Doe' with actual author name
+getBooksByAuthor('John Doe');
+
+
+
 // Get all books based on title
 public_users.get('/title/:title', function(req, res) {
     const title = req.params.title;
@@ -61,6 +107,36 @@ public_users.get('/title/:title', function(req, res) {
     }
   });
 
+  const axios = require('axios');
+
+const getBooksByTitle = async (title) => {
+    try {
+        const response = await axios.get(`http://localhost:3000/title/${title}`);
+        console.log('Books by title:', response.data);
+    } catch (error) {
+        console.error(`Error fetching books with title ${title}:`, error);
+    }
+};
+
+const axios = require('axios');
+
+const getBooksByTitle = async (title) => {
+    try {
+        const response = await axios.get(`http://localhost:3000/title/${title}`);
+        console.log('Books by title:', response.data);
+    } catch (error) {
+        console.error(`Error fetching books with title ${title}:`, error);
+    }
+};
+
+// Replace 'The Great Book' with actual book title
+getBooksByTitle('The Great Book');
+
+
+// Replace 'The Great Book' with actual book title
+getBooksByTitle('The Great Book');
+
+
 //  Get book review
 public_users.get('/review/:isbn', function(req, res) {
     const isbn = req.params.isbn;
@@ -72,6 +148,8 @@ public_users.get('/review/:isbn', function(req, res) {
     }
     res.status(404).send({ message: "Book not found" });
   });
+
+
 
   public_users.post('/register', (req, res) => {
     const { username, password } = req.body;  // Retrieve username and password from the request body
